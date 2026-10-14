@@ -1,0 +1,14 @@
+.mine { max-width: 1120px; margin: 0 auto; padding: 32px 24px 80px; }
+.mine-hint { color: #6b7280; font-size: 14px; margin: 8px 0 28px; }
+.mine-empty { color: #6b7280; font-size: 15px; padding: 48px 0; text-align: center; }
+.mine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.mine-card { border: 1px solid #e5e7eb; border-radius: 4px; background: #fff; display: flex; flex-direction: column; overflow: hidden; }
+.mine-card.busy { opacity: 0.6; pointer-events: none; }
+.mine-thumb { aspect-ratio: 1; background: #f7f8fa; border: none; cursor: pointer; display: grid; place-items: center; padding: 24px; }
+.mine-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.mine-thumb-ph { width: 40%; aspect-ratio: 1; border-radius: 50%; background: #e5e7eb; }
+.mine-meta { padding: 14px 16px 6px; display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: #6b7280; }
+.mine-meta strong { font-size: 15px; color: #111; }
+.mine-date { font-size: 12px; }
+.mine-actions { display: flex; gap: 8px; padding: 10px 16px 16px; }
+.mine-actions .bar-btn { flex: 1; padding: 10px; font-size: 13px; justify-content: center; }

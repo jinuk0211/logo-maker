@@ -1,0 +1,493 @@
+.wiz {
+  padding-top: 20px;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+}
+.wiz-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 26px;
+  align-items: stretch;
+}
+.wiz-form {
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.q-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.q-num {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--mint-100);
+  color: var(--mint-600);
+  font-size: 13px;
+  font-weight: 700;
+}
+.q-input {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: var(--r-sm);
+  border: 1.6px solid var(--line);
+  background: var(--bg-soft);
+  font-size: 16px;
+  color: var(--ink);
+  transition: border-color 0.15s, background 0.15s;
+}
+.q-input:focus {
+  outline: none;
+  border-color: var(--mint-400);
+  background: #fff;
+}
+.q-input::placeholder {
+  color: #aab2c5;
+}
+
+/* segmented */
+.seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: var(--bg-soft);
+  padding: 6px;
+  border-radius: var(--r-sm);
+}
+.seg-btn {
+  padding: 12px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all 0.18s;
+}
+.seg-btn.on {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+/* chips */
+.chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.chip-style {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  border: 1.6px solid var(--line);
+  background: #fff;
+  text-align: left;
+  transition: all 0.16s;
+}
+.chip-style strong {
+  font-family: var(--font-head);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.chip-style em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.chip-style.on {
+  border-color: var(--mint-500);
+  background: var(--mint-50);
+  box-shadow: 0 6px 16px rgba(16, 201, 140, 0.14);
+}
+
+.chips-motif {
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+}
+.chip-motif {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1.6px solid var(--line);
+  background: #fff;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: all 0.16s;
+}
+.chip-emoji {
+  font-size: 16px;
+}
+.chip-motif.on {
+  border-color: var(--mint-500);
+  background: var(--mint-50);
+  color: var(--mint-600);
+  font-weight: 700;
+}
+/* 참고 이미지 업로드 */
+.ref-drop {
+  border: 2px dashed var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg-soft);
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  transition: all 0.16s;
+}
+.ref-drop.over {
+  border-color: var(--mint-500);
+  background: var(--mint-50);
+}
+.ref-drop.has {
+  border-style: solid;
+  background: #fff;
+}
+.ref-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+.ref-icon {
+  font-size: 30px;
+}
+.ref-empty strong {
+  font-family: var(--font-head);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ref-empty em {
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.ref-thumb {
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: var(--r-sm);
+  display: block;
+  box-shadow: var(--shadow-sm);
+}
+.ref-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: center;
+}
+.ref-btn {
+  padding: 9px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* 선택 UI (형태 / 분위기 / 컬러) — 커머스 상품페이지 톤:
+      대문자 마이크로 라벨 + 각진 아웃라인 타일, 선택은 컬러가 아니라 검은 테두리로 표시 */
+
+.pick-grid {
+  display: grid;
+  gap: 8px;
+}
+.pick-form {
+  grid-template-columns: repeat(2, 1fr);
+}
+.pick-mood {
+  grid-template-columns: repeat(4, 1fr);
+}
+.pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px 11px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: var(--muted);
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.pick:hover:not(:disabled) {
+  border-color: #9a9a9a;
+}
+/* inset 링으로 2px 처럼 보이게 — border 두께를 바꾸지 않아 레이아웃이 흔들리지 않음 */
+.pick.on {
+  border-color: #111;
+  box-shadow: inset 0 0 0 1px #111;
+}
+.pick-art {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 46px;
+  color: inherit;
+}
+.pick-art svg {
+  width: auto;
+  height: 100%;
+  display: block;
+}
+.pick strong {
+  font-family: var(--font-head);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #444;
+}
+.pick.on strong {
+  color: #111;
+}
+.pick em {
+  font-style: normal;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--muted);
+  text-align: center;
+}
+.pick-off {
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+.pick-off strong {
+  text-decoration: line-through;
+}
+
+@media (max-width: 860px) {
+  .pick-mood {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.q-input-motif {
+  margin-top: 12px;
+  font-size: 14px;
+  padding: 13px 16px;
+}
+
+/* 스텝형 위저드 — 커머스 상품페이지 레이아웃:
+      왼쪽 대형 이미지 패널 / 오른쪽 정보 컬럼 / 맨 아래 검은 풀폭 액션 바 */
+.wiz-step {
+  width: min(1360px, 94vw);
+  margin: 0 auto;
+  padding-top: 8px;
+}
+.step-shell {
+  display: grid;
+  /* minmax(0, …) — 미리보기 안 내용이 길어도 컬럼이 밀리지 않게 */
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: stretch;
+}
+
+/* 왼쪽: 로고 미리보기 */
+.step-preview {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+.preview-stage {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  overflow: hidden;
+  /* 헤더 아래 화면을 꽉 채우되 과하게 길어지지 않게 */
+  height: clamp(420px, calc(100vh - 150px), 720px);
+  padding: 10%;
+  background: var(--panel);
+  border-radius: 2px;
+}
+
+/* 오른쪽: 정보 컬럼 */
+.step-main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+
+/* 진행 바 — 컬럼 폭에 맞춘 얇은 모노톤 세그먼트 */
+.stepper {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+.seg-bar {
+  flex: 1;
+  height: 2px;
+  background: #e2e2e2;
+  transition: background 0.35s ease;
+}
+.seg-bar.done {
+  background: #111;
+}
+
+.step-eyebrow {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+.step-q {
+  font-size: clamp(26px, 2.9vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #111;
+  margin: 10px 0 28px;
+}
+.step-hint {
+  margin: 26px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid #ececec;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #8a8a8a;
+}
+
+/* 입력 — 각지고 밑줄에 가까운 플랫 필드 */
+.q-input {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-size: 15px;
+  color: #111;
+  transition: border-color 0.14s;
+}
+.q-input:focus {
+  outline: none;
+  border-color: #111;
+}
+.q-input::placeholder {
+  color: #b0b0b0;
+}
+.step-name {
+  font-size: 16px;
+  padding: 16px;
+}
+
+
+/* 참고 이미지 업로드 — 각진 플랫 톤으로 통일 */
+.ref-drop {
+  border: 1px dashed #d0d0d0;
+  border-radius: 2px;
+  background: #fafafa;
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  transition: border-color 0.14s, background 0.14s;
+}
+.ref-drop.over {
+  border-color: #111;
+  background: #f2f2f2;
+}
+.ref-drop.has {
+  border-style: solid;
+  background: #fff;
+}
+.ref-thumb {
+  border-radius: 2px;
+  box-shadow: none;
+  border: 1px solid #ececec;
+}
+.ref-btn {
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  box-shadow: none;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.ref-btn:hover {
+  border-color: #111;
+  color: #111;
+  transform: none;
+}
+.ref-empty strong {
+  font-size: 13.5px;
+  color: #111;
+}
+.ref-empty em {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+@media (max-width: 900px) {
+  .step-shell {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .step-preview {
+    position: static;
+  }
+  .preview-stage {
+    height: clamp(300px, 52vh, 420px);
+  }
+}
+
+/* 한 스텝에 필드가 여러 개일 때 */
+.step-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* 무드 예시 로고 */
+.sample-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sample {
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  padding: 6px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.sample:hover {
+  border-color: #9a9a9a;
+}
+.sample.on {
+  border-color: #111;
+  box-shadow: inset 0 0 0 1px #111;
+}
+.sample img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 미리보기가 실제 생성물로 오해되지 않게 */
+.preview-note {
+  margin-top: 12px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: #9a9a9a;
+  letter-spacing: 0.01em;
+}

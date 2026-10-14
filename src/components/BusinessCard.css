@@ -1,0 +1,460 @@
+/* 명함 카드 (90x50 비율) */
+.bc {
+  width: 470px;
+  max-width: 86vw;
+  aspect-ratio: 90 / 50;
+  border-radius: 16px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 50px rgba(22, 34, 60, 0.22);
+}
+.theme-light {
+  background: #ffffff;
+  color: var(--ink);
+}
+.theme-dark {
+  background: var(--navy-900);
+  color: #fff;
+}
+.theme-brand {
+  background: var(--accent);
+  color: #fff;
+}
+
+.bc-logo-wrap {
+  align-self: flex-start;
+  line-height: 0;
+}
+/* 글자 크기 슬라이더 — 앞면 정보 영역 전체를 zoom (레이아웃 같이 커짐) */
+.bc-info, .bc-min-name, .bc-min-list, .bc-min-addr { zoom: var(--text-scale, 1); }
+/* 로고 크기 슬라이더 — zoom 은 레이아웃까지 같이 커져서 옆 정보와 겹치지 않는다 */
+.bc-logo-wrap .lr {
+  zoom: var(--logo-scale, 1);
+}
+/* 다크/브랜드 테마: AI 이미지 심볼은 흰색으로 반전 (박스 없이)
+   .lr-full 은 AI 결과를 그대로 쓰는 경로, .lr-image img 는 목업 폴백 경로 */
+.bc-logo-reverse .lr-full,
+.bc-logo-reverse .lr-image img,
+.bc-logo-reverse .lr-symbol svg {
+  filter: brightness(0) invert(1);
+}
+
+/* 이름 + 직함 (한 줄) */
+.bc-person {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bc-person strong {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.bc-person em {
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.theme-dark .bc-person em {
+  color: rgba(255, 255, 255, 0.72);
+}
+.theme-brand .bc-person em {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 연락처 (아이콘) */
+.bc-contacts {
+  list-style: none;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.bc-contacts li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bc-gi {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.bc-gi svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.theme-dark .bc-gi,
+.theme-brand .bc-gi {
+  color: #fff;
+}
+
+/* 템플릿: 좌측 (기본 컬럼) */
+.bc-left .bc-info {
+  margin-top: auto;
+}
+
+/* 템플릿: 분할 — 이름 좌하단, 연락처 우하단 */
+.bc-split .bc-info {
+  margin-top: auto;
+}
+.bc-split .bc-contacts {
+  position: absolute;
+  right: 32px;
+  bottom: 28px;
+  text-align: right;
+}
+.bc-split .bc-contacts li {
+  flex-direction: row-reverse;
+}
+
+/* 템플릿: 클래식 — 좌측 로고(세로형) | 우측 이름·연락처 */
+.bc-classic {
+  flex-direction: row;
+  align-items: center;
+  gap: 26px;
+}
+.bc-classic .bc-logo-wrap {
+  flex: 0 0 42%;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  padding-right: 26px;
+  border-right: 1.5px solid rgba(22, 34, 60, 0.1);
+}
+.theme-dark .bc-classic .bc-logo-wrap,
+.theme-brand .bc-classic .bc-logo-wrap {
+  border-right-color: rgba(255, 255, 255, 0.22);
+  background: none;
+  padding: 0 26px 0 0;
+}
+.bc-classic .bc-info {
+  flex: 1;
+}
+
+/* 템플릿: 모던 — 로고 상단, 구분선, 이름 + 2열 연락처 */
+.bc-modern .bc-info {
+  margin-top: auto;
+  border-top: 1.5px solid rgba(22, 34, 60, 0.12);
+  padding-top: 14px;
+}
+.theme-dark .bc-modern .bc-info,
+.theme-brand .bc-modern .bc-info {
+  border-top-color: rgba(255, 255, 255, 0.24);
+}
+.bc-modern .bc-contacts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 18px;
+}
+
+/* 템플릿: 미니멀 — 전면 텍스트만(로고 없음), 로고는 뒷면에만 */
+.bc-minimal {
+  justify-content: space-between;
+  padding: 32px 36px;
+}
+.bc-min-name {
+  align-self: flex-end;
+  text-align: right;
+}
+.bc-min-name strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.bc-min-name em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.bc-min-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bc-min-row {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 12px;
+  font-size: 12.5px;
+  align-items: baseline;
+}
+.bc-min-row span {
+  color: var(--muted);
+  font-weight: 500;
+}
+.bc-min-row b {
+  font-weight: 500;
+}
+.bc-min-addr {
+  font-size: 11px;
+  color: var(--muted);
+}
+.theme-dark .bc-min-name em,
+.theme-brand .bc-min-name em,
+.theme-dark .bc-min-row span,
+.theme-brand .bc-min-row span,
+.theme-dark .bc-min-addr,
+.theme-brand .bc-min-addr {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+
+/* 뒷면 — 구성(back-*) × 배경(backbg-*) 조합 */
+.bc.bc-back {
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-direction: column;
+  text-align: center;
+}
+/* 배경 4종 */
+.backbg-brand { background: var(--accent); color: #fff; }
+.backbg-gradient {
+  background: linear-gradient(135deg, var(--accent), rgba(0, 0, 0, 0.35));
+  color: #fff;
+}
+.backbg-light { background: #fff; color: var(--ink); }
+.backbg-dark { background: var(--navy-900); color: #fff; }
+
+/* 로고 — 흰 칩 박스 없이 배경 위에 바로 (누끼된 심볼이라 가능) */
+.bc-back-mark {
+  line-height: 0;
+}
+.bc-back-name {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+.bc-back-tag {
+  max-width: 78%;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.82;
+}
+
+/* 구성별 미세 조정 */
+.back-mark { gap: 0; }
+.back-wordmark .bc-back-name {
+  font-size: 30px;
+  letter-spacing: 0.04em;
+}
+/* 빈 면 — 인쇄비를 아끼거나 필기용으로 쓰는 선택지 */
+.back-plain { gap: 0; }
+
+/* 카드 안 로고 워드마크도 선택 폰트를 따르게 */
+.bc .lr-text {
+  font-family: inherit;
+}
+
+/* 화면 UI — 위저드·결과·조율과 같은 커머스 상품페이지 레이아웃
+   (위쪽 .bc* 규칙은 명함 자체의 디자인이라 손대지 않는다) */
+.bcard {
+  width: min(1360px, 94vw);
+  margin: 0 auto;
+  padding-top: 8px;
+}
+.bcard-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: stretch;
+}
+
+/* 왼쪽: 명함 미리보기 */
+.bcard-preview {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+.bcard-stage {
+  display: grid;
+  place-items: center;
+  height: clamp(420px, calc(100vh - 230px), 660px);
+  padding: 6%;
+  background: var(--panel);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bcard-sidetab {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.bcard-sidetab button {
+  min-width: 78px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  transition: border-color 0.14s, box-shadow 0.14s, color 0.14s;
+}
+.bcard-sidetab button:hover {
+  border-color: #9a9a9a;
+}
+.bcard-sidetab button.on {
+  border-color: #111;
+  box-shadow: inset 0 0 0 1px #111;
+  color: #111;
+}
+
+/* 오른쪽: 컨트롤 컬럼 */
+.bcard-main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+.bcard-title {
+  font-size: clamp(26px, 2.9vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #111;
+  margin: 10px 0 10px;
+}
+.bcard-meta {
+  font-size: 13px;
+  color: #8a8a8a;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #ececec;
+}
+.bcard-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding-top: 26px;
+}
+
+/* 레이아웃 · 테마 타일 */
+.tmpl-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tmpl-btn {
+  min-width: 68px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  transition: border-color 0.14s, box-shadow 0.14s, color 0.14s;
+}
+.tmpl-btn:hover {
+  border-color: #9a9a9a;
+}
+.tmpl-btn.on {
+  border-color: #111;
+  box-shadow: inset 0 0 0 1px #111;
+  color: #111;
+}
+
+/* 폰트 */
+.font-select {
+  width: 100%;
+  padding: 13px 44px 13px 14px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none' stroke='%23111' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px 14px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+}
+.font-select:focus {
+  outline: none;
+  border-color: #111;
+}
+.font-preview {
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 2px;
+  background: var(--panel);
+  font-size: 17px;
+  color: #111;
+  text-align: center;
+}
+
+/* 명함 정보 입력 */
+.bc-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.bc-field:first-child,
+.bc-field:nth-child(7) {
+  grid-column: 1 / -1;
+}
+.bc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bc-field span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.bc-field input {
+  padding: 12px 13px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-size: 13.5px;
+  color: #111;
+  transition: border-color 0.14s;
+}
+.bc-field input:focus {
+  outline: none;
+  border-color: #111;
+}
+
+@media (max-width: 900px) {
+  .bcard-shell {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .bcard-preview {
+    position: static;
+  }
+  .bcard-stage {
+    height: clamp(280px, 46vh, 380px);
+  }
+  .bc-fields {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,398 @@
+:root {
+  /* Brand palette (라벤더-그레이 + 소프트 블루 · 대시보드 톤)
+     변수명은 --mint-* 이지만 지금은 블루 계열 accent 로 재정의됨 (UI 통일) */
+  --mint-50: #eef4ff;
+  --mint-100: #dce8ff;
+  --mint-200: #bcd3fb;
+  --mint-400: #6d9bf3;
+  --mint-500: #2f6bf6;
+  --mint-600: #1f56d8;
+  --navy-900: #0f1830;
+  --navy-800: #17233d;
+  --navy-700: #26334f;
+  --ink: #16223c;
+  --muted: #868da4;
+  --line: #e4e6ef;
+
+  /* 로고 렌더용 그린 accent (참고 이미지의 초록 글래스 요소) */
+  --leaf-500: #16c48d;
+
+  /* Surfaces */
+  /* 로고 미리보기 패널 — 회색 대신 살짝 푸른 기 도는 오프화이트 */
+  --panel: #f7f9fd;
+  --bg: #e4e3e3;
+  --bg-soft: #dedddd;
+  --card: #ffffff;
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-line: rgba(255, 255, 255, 0.7);
+
+  /* Effects */
+  --shadow-sm: 0 4px 14px rgba(22, 34, 60, 0.05);
+  --shadow-md: 0 14px 40px rgba(22, 34, 60, 0.08);
+  --shadow-lg: 0 30px 70px rgba(22, 34, 60, 0.12);
+  --shadow-mint: 0 16px 34px rgba(47, 107, 246, 0.26);
+
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 30px;
+  --r-xl: 40px;
+
+  --font-head: "Poppins", "Noto Sans KR", system-ui, sans-serif;
+  --font-body: "Noto Sans KR", "Poppins", system-ui, sans-serif;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  color: var(--ink);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.mint {
+  color: var(--mint-500);
+}
+
+/* Shared button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+    color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+.btn-primary {
+  background: var(--mint-500);
+  color: #fff;
+  box-shadow: var(--shadow-mint);
+}
+.btn-primary:hover {
+  background: var(--mint-600);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: #fff;
+  color: var(--ink);
+  border: 1.6px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:hover {
+  border-color: var(--mint-400);
+  color: var(--mint-600);
+  transform: translateY(-2px);
+}
+.btn-dark {
+  background: var(--navy-800);
+  color: #fff;
+}
+.btn-dark:hover {
+  background: var(--navy-900);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn .arrow {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  font-size: 13px;
+}
+.btn-ghost .arrow {
+  background: var(--navy-800);
+  color: #fff;
+}
+
+/* Layout helpers */
+.container {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+.eyebrow {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mint-500);
+}
+
+/* Fade/slide entrance */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-22px);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+::selection {
+  background: var(--mint-200);
+  color: var(--navy-900);
+}
+
+/* 브랜드 컬러 선택 — 각진 스와치, 선택은 바깥 검은 링으로 표시 */
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.color-dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  display: grid;
+  place-items: center;
+  transition: outline-color 0.14s, border-color 0.14s;
+  outline: 1.5px solid transparent;
+  outline-offset: 2px;
+}
+.color-dot:hover {
+  outline-color: #c4c4c4;
+}
+.color-dot.on {
+  outline-color: #111;
+}
+.color-dot-x {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+/* "선택안함" — 폭만 넓힌 각진 타일 */
+.color-none {
+  width: auto;
+  height: 34px;
+  padding: 0 14px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+}
+.color-none.on {
+  border-color: #111;
+}
+.color-none-x {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.color-none.on .color-none-x {
+  color: #111;
+}
+.color-custom {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  border: 1px dashed #cfcfcf;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 16px;
+  overflow: hidden;
+  transition: border-color 0.14s;
+}
+.color-custom:hover {
+  border-color: #9a9a9a;
+}
+.color-custom input[type="color"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+/* 플랫 커머스 톤 공용 프리미티브 (Wizard · Results 공용)
+   각진 2px radius, 모노톤, 선택은 검은 테두리로 표시하는 규칙을 여기서 한 번만 정의한다. */
+
+/* 컬럼 맨 위 되돌아가기 링크 */
+.step-back {
+  align-self: flex-start;
+  margin-bottom: 26px;
+  padding: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  transition: color 0.14s;
+}
+.step-back:hover {
+  color: #111;
+}
+
+/* 대문자 마이크로 라벨 + 현재 선택값 */
+.pick-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pick-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+.pick-label b {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #111;
+}
+
+/* 하단 풀폭 액션 바 — 컬럼 맨 아래(= 왼쪽 패널 아래선)에 붙는다 */
+.bar-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 26px;
+}
+.bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 19px;
+  border-radius: 2px;
+  font-family: var(--font-head);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: background 0.16s, color 0.16s, border-color 0.16s;
+}
+.bar-dark {
+  background: #111;
+  color: #fff;
+}
+.bar-dark:hover:not(:disabled) {
+  background: #333;
+}
+.bar-dark:disabled {
+  background: #d5d5d5;
+  cursor: not-allowed;
+}
+.bar-ghost {
+  background: #fff;
+  color: #111;
+  border: 1px solid #cfcfcf;
+}
+.bar-ghost:hover {
+  border-color: #111;
+}
+.bar-ico {
+  font-size: 14px;
+}
+
+/* 액션 바를 2열로 눕힐 때 */
+.bar-row {
+  display: flex;
+  gap: 8px;
+}
+.bar-row .bar-btn {
+  flex: 1;
+}
+.bar-ghost:disabled {
+  color: #b5b5b5;
+  border-color: #e6e6e6;
+  cursor: not-allowed;
+}
+
+/* 로딩 스피너 (Results · Refine 공용) */
+.spinner {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid #dcdcdc;
+  border-top-color: #111;
+  animation: spin 0.8s linear infinite;
+}
+
+/* 히어로 모눈 배경 — 선 농도·칸 크기를 여기서 조절 */
+:root {
+  --grid-line: rgba(17, 17, 24, 0.055);
+  --grid-cell: 72px;
+}

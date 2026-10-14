@@ -1,0 +1,74 @@
+/* 영상 비율(16:9)을 그대로 유지해야 벽 글자가 항상 같은 자리에 붙는다 */
+.mk {
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  margin: 0 calc(50% - 50vw) -80px; /* .stage 하단 여백 상쇄 — 사진이 화면 끝까지 */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #fff;
+}
+.mk-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 벽에 박힌 글자 */
+.mk-wall {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: 0.16em;
+  white-space: nowrap;
+  color: #1a1a1a;
+  font-size: clamp(30px, 7.4vw, 122px);
+  line-height: 1;
+}
+
+/* Make — 손글씨, 왼쪽부터 스스슥 */
+.mk-script {
+  font-family: "Yellowtail", cursive;
+  font-weight: 400;
+  /* 왼쪽은 M 의 스와시, 오른쪽은 흘림체 꼬리가 글자 상자 밖으로 나온다 */
+  padding: 0 0.06em 0 0.12em;
+  clip-path: inset(-22% 100% -25% -14%);
+}
+.mk.on .mk-script {
+  clip-path: inset(-22% -6% -25% -14%);
+  transition: clip-path 1.05s cubic-bezier(0.62, 0.02, 0.24, 1) 0.15s;
+}
+
+/* your Logo — 뒤이어 올라오며 */
+.mk-sans {
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  opacity: 0;
+  transform: translateY(0.16em);
+}
+.mk.on .mk-sans {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.55s ease 0.95s, transform 0.55s cubic-bezier(0.2, 0.8, 0.3, 1) 0.95s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-script,
+  .mk.on .mk-script {
+    clip-path: none;
+    transition: none;
+  }
+  .mk-sans,
+  .mk.on .mk-sans {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

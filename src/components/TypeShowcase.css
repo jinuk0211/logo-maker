@@ -1,0 +1,149 @@
+.ts {
+  position: relative;
+  z-index: 2;
+  padding: 40px 0 20px;
+}
+
+/* 컨테이너 정렬용 여백 — 오른쪽은 화면 끝까지 흘러가게 */
+.ts-top {
+  width: min(1240px, 94vw);
+  margin: 0 auto 34px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.ts-eyebrow {
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--mint-500);
+}
+.ts-h2 {
+  font-size: clamp(24px, 3.2vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 8px 0 10px;
+}
+.ts-sub {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 620px;
+}
+.ts-nav {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.ts-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font-size: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.ts-arrow:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 가로 스크롤 스트립 */
+.ts-row {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-inline: max(3vw, calc((100vw - 1240px) / 2));
+  scroll-padding-inline: max(3vw, calc((100vw - 1240px) / 2));
+  scrollbar-width: none;
+}
+.ts-row::-webkit-scrollbar {
+  display: none;
+}
+
+.ts-item {
+  flex: 0 0 clamp(240px, 26vw, 330px);
+  scroll-snap-align: start;
+}
+.ts-item-head {
+  padding: 0 4px 20px;
+  min-height: 118px;
+}
+.ts-item-title {
+  font-family: var(--font-head);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.ts-item-meta {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.ts-item-meta span {
+  color: var(--muted);
+}
+
+.ts-panel {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: clamp(260px, 30vw, 380px);
+  padding: 12%;
+}
+.ts-panel svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 마지막 CTA 타일 */
+.ts-cta-panel {
+  flex-direction: column;
+  gap: 14px;
+  background: var(--mint-500);
+  color: #fff;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+.ts-cta-panel:hover {
+  filter: brightness(1.06);
+}
+.ts-cta-plus {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+}
+.ts-cta-text {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .ts-nav {
+    display: none;
+  }
+  .ts-item-head {
+    min-height: 104px;
+  }
+}
+
+/* 실제 결과물 이미지 패널 — 배경이 이미지에 포함돼 있어 여백 없이 채운다 */
+.ts-panel-img {
+  padding: 0;
+  overflow: hidden;
+}
+.ts-panel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

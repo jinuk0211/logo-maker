@@ -1,0 +1,217 @@
+/* 조율 화면 — 위저드·결과와 같은 커머스 상품페이지 레이아웃 */
+.refine {
+  width: min(1360px, 94vw);
+  margin: 0 auto;
+  padding-top: 8px;
+}
+.refine-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: stretch;
+}
+
+/* 왼쪽: 미리보기 */
+.refine-preview {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+.refine-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: clamp(420px, calc(100vh - 260px), 640px);
+  padding: 6%;
+  border-radius: 2px;
+  overflow: hidden;
+}
+/* 배경 3종 — 투명 확인용 체커 / 흰판 / 어두운 판 */
+.bg-checker .refine-stage,
+.refine-stage.bg-checker {
+  background: repeating-conic-gradient(#ffffff 0% 25%, #eef1f6 0% 50%) 0 / 24px 24px;
+}
+.refine-stage.bg-light {
+  background: #ffffff;
+  border: 1px solid #ececec;
+}
+.refine-stage.bg-dark {
+  background: #141a2e;
+}
+.refine-stage .lr {
+  max-width: 100%;
+}
+
+.edit-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  grid-auto-flow: row;
+  background: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #8a8a8a;
+}
+.refine-stage.bg-dark .edit-overlay {
+  background: rgba(20, 26, 46, 0.82);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.refine-bgfield {
+  margin-top: 14px;
+}
+.pbt-row {
+  display: flex;
+  gap: 8px;
+}
+.pbt {
+  min-width: 64px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  transition: border-color 0.14s, box-shadow 0.14s, color 0.14s;
+}
+.pbt:hover {
+  border-color: #9a9a9a;
+}
+.pbt.on {
+  border-color: #111;
+  box-shadow: inset 0 0 0 1px #111;
+  color: #111;
+}
+
+/* 오른쪽: 컨트롤 */
+.refine-main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+.refine-title {
+  font-size: clamp(26px, 2.9vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #111;
+  margin: 10px 0 10px;
+}
+.refine-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #8a8a8a;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #ececec;
+}
+.refine-dot {
+  color: #d0d0d0;
+}
+.refine-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding-top: 26px;
+}
+
+/* AI 다듬기 */
+.edit-row {
+  display: flex;
+  gap: 8px;
+}
+.edit-row .q-input {
+  flex: 1;
+  padding: 13px 14px;
+  font-size: 14px;
+}
+.edit-apply {
+  width: auto;
+  flex: 0 0 auto;
+  padding: 0 26px;
+}
+.edit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.edit-chip {
+  padding: 8px 13px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #444;
+  transition: border-color 0.14s, color 0.14s;
+}
+.edit-chip:hover:not(:disabled) {
+  border-color: #111;
+  color: #111;
+}
+.edit-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.edit-err {
+  font-size: 12.5px;
+  color: #d64545;
+}
+
+/* 슬라이더 — 모노톤 */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: #dcdcdc;
+  outline: none;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #111;
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  background: #111;
+  cursor: pointer;
+}
+.slider-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: #9a9a9a;
+}
+
+@media (max-width: 900px) {
+  .refine-shell {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .refine-preview {
+    position: static;
+  }
+  .refine-stage {
+    height: clamp(300px, 52vh, 420px);
+  }
+}
+
+.edit-undo { margin-top: 10px; background: none; border: 1px solid #e5e7eb; border-radius: 2px; padding: 9px 14px; font-size: 12.5px; font-weight: 600; color: #444; cursor: pointer; }
+.edit-undo:hover:not(:disabled) { border-color: #111; color: #111; }
+.edit-undo small { font-weight: 500; color: #9a9a9a; margin-left: 2px; }

@@ -1,0 +1,416 @@
+/* 다크 + 도트 그리드, 중앙 미리보기 주변에 컨트롤 카드가 떠 있는 구성 */
+.it {
+  position: relative;
+  z-index: 2;
+  margin: 90px calc(50% - 50vw) 0;
+  width: 100vw;
+  padding: 96px 0 110px;
+  background: #141416;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.it-head {
+  text-align: center;
+  margin-bottom: 64px;
+  padding: 0 5vw;
+}
+.it-head h2 {
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.it-head p {
+  margin-top: 18px;
+  font-size: clamp(14px, 1.2vw, 16.5px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* 무대 */
+.it-stage {
+  position: relative;
+  width: min(1240px, 94vw);
+  margin: 0 auto;
+  min-height: 680px;
+  display: grid;
+  place-items: center;
+}
+.it-preview {
+  width: clamp(240px, 27vw, 340px);
+  aspect-ratio: 1 / 1.1;
+  display: grid;
+  place-items: center;
+  padding: 8%;
+  border-radius: 6px;
+  background: linear-gradient(160deg, #f3f4f7, #e7e9ee);
+}
+.it-preview svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 중앙 미리보기 — 모든 컨트롤의 결과물이 여기로 모인다 */
+.itp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  animation: itpop 0.42s cubic-bezier(0.24, 1.4, 0.4, 1) both;
+}
+.itp-h {
+  flex-direction: row;
+}
+.itp-v {
+  flex-direction: column;
+}
+@keyframes itpop {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.itp-sym {
+  display: block;
+  flex: 0 0 auto;
+  width: calc(54% * var(--sym, 1));
+  color: var(--accent);
+  transition: width 0.12s linear, color 0.18s;
+}
+.itp-sym svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transform: scale(1.18); /* 무드 프리뷰 글리프가 뷰박스에서 작게 그려져 있어 살짝 키운다 */
+}
+/* 프리뷰용 얇은 선(1.3~3)을 큰 크기에서도 읽히도록 한 두께로 통일 */
+.itp-sym svg [stroke] {
+  stroke-width: 2.4;
+}
+.itp-word {
+  position: relative;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: calc(1.55rem * var(--txt, 1));
+  letter-spacing: 0.12em;
+  line-height: 1;
+  color: #16233c;
+  transition: font-size 0.12s linear;
+}
+/* 워드마크 — 이름 아래 accent 룰 */
+.itp-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.34em;
+  height: 0.14em;
+  border-radius: 999px;
+  background: var(--accent);
+}
+/* 카드 공통 */
+.it-card {
+  position: absolute;
+  background: #1e1e21;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
+}
+.it-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12.5px;
+  margin-bottom: 12px;
+}
+.it-card-top strong {
+  font-weight: 600;
+  color: #fff;
+}
+.it-card-top span {
+  color: rgba(255, 255, 255, 0.45);
+}
+.it-chip {
+  padding: 6px 14px;
+  border-radius: 7px;
+  background: var(--mint-500);
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+}
+button.it-chip {
+  transition: filter 0.15s;
+}
+button.it-chip:hover {
+  filter: brightness(1.12);
+}
+
+/* 프롬프트 */
+.it-prompt {
+  top: 4%;
+  left: 0;
+  width: 264px;
+}
+.it-textarea {
+  min-height: 62px;
+  padding: 11px 12px;
+  border-radius: 8px;
+  background: #2a2a2e;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.it-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  border-radius: 8px;
+  background: var(--mint-500);
+  color: #fff;
+  text-align: center;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  transition: filter 0.15s, transform 0.12s;
+}
+.it-btn:hover {
+  filter: brightness(1.12);
+}
+.it-btn:active {
+  transform: scale(0.98);
+}
+
+/* 형태 */
+.it-forms {
+  top: 40%;
+  left: 3%;
+  width: 224px;
+}
+.it-thumbs {
+  display: flex;
+  gap: 8px;
+}
+.it-thumb {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #2a2a2e;
+  border: 2px solid transparent;
+  color: rgba(255, 255, 255, 0.7);
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.it-thumb:hover {
+  background: #35353a;
+  color: #fff;
+}
+.it-thumb.on {
+  border-color: var(--mint-500);
+  color: #fff;
+}
+.it-thumb svg {
+  width: 26px;
+  height: 24px;
+}
+
+/* 패드 */
+.it-pad {
+  bottom: 0;
+  left: 11%;
+  width: 214px;
+  padding: 6px 6px 10px;
+}
+.it-tabs {
+  display: flex;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.it-tabs button {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: background 0.15s, color 0.15s;
+}
+.it-tabs button:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+.it-tabs button.on {
+  background: #2f2f34;
+  color: #fff;
+}
+.it-padbox {
+  position: relative;
+  height: 132px;
+  border-radius: 8px;
+  background: #1a1a1d;
+  cursor: crosshair;
+  touch-action: none;
+  overflow: hidden;
+}
+.it-padbox em {
+  position: absolute;
+  font-style: normal;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.34);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.pl-top {
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pl-left {
+  left: 8px;
+  top: 50%;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+}
+.pl-right {
+  right: 8px;
+  top: 50%;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+}
+/* 드래그 노브 */
+.it-ring {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.it-ring i {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--mint-500);
+}
+
+/* 컬러 */
+.it-colors {
+  top: 2%;
+  right: 2%;
+  width: 214px;
+}
+.it-swatches {
+  display: flex;
+  gap: 8px;
+}
+.it-sw {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 2px transparent;
+  transition: box-shadow 0.15s, transform 0.12s;
+}
+.it-sw:hover {
+  transform: translateY(-2px);
+}
+.it-sw.on {
+  box-shadow: 0 0 0 2px #fff;
+}
+
+/* 분위기 다이얼 */
+.it-mood {
+  top: 25%;
+  right: 0;
+  width: 200px;
+}
+.it-dial {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-bottom: 6px;
+  cursor: pointer;
+  touch-action: none;
+}
+.it-dial svg {
+  width: 100%;
+  height: auto;
+}
+.it-dial-icon {
+  position: absolute;
+  top: 46%;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+.it-pill {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #3a3a3f;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 내보내기 */
+.it-export {
+  bottom: 0;
+  right: 7%;
+  width: 186px;
+}
+/* 내보내기 포맷 — 일러스트 대신 글자 자체를 크게 */
+.it-formats {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 0 10px;
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.it-formats i {
+  font-style: normal;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* 좁은 화면: 카드를 미리보기 아래로 흘려보냄 */
+@media (max-width: 1080px) {
+  .it-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    min-height: 0;
+  }
+  .it-card {
+    position: static;
+    width: min(300px, 84vw);
+  }
+  .it-preview {
+    width: min(300px, 84vw);
+    margin-bottom: 10px;
+  }
+}

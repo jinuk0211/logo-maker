@@ -1,0 +1,173 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+}
+/* 랜딩(intro)만 순백 — 위저드/결과 화면은 기존 뉴트럴 그레이 유지 */
+.app-home {
+  background: #fff;
+}
+.stage {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 80px;
+}
+
+/* Header — 플랫 톤: 그림자·알약 없이 얇은 하단선만 */
+.hdr {
+  position: relative;
+  z-index: 5;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+}
+.hdr-wrap {
+  width: min(1360px, 94vw);
+  margin: 0 auto;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+/* BF 심볼 — 검정 잉크에 투명 배경이라 배지 없이 그대로 얹는다 */
+.brand-mark {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+/* 네비 — 텍스트만, 현재 위치는 밑줄로 */
+.navpill {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.navpill-item {
+  position: relative;
+  padding: 6px 0;
+  font-family: var(--font-head);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #8a8a8a;
+  transition: color 0.14s;
+  white-space: nowrap;
+}
+.navpill-item:hover {
+  color: #111;
+}
+.navpill-item.on {
+  color: #111;
+}
+.navpill-item.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: #111;
+}
+
+/* CTA — 각진 검은 버튼 */
+.hdr-cta {
+  padding: 11px 20px;
+  border-radius: 2px;
+  background: #111;
+  color: #fff;
+  box-shadow: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.hdr-cta:hover {
+  background: #333;
+  transform: none;
+}
+.hdr-cta .arrow {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .navpill {
+    display: none;
+  }
+}
+
+/* Section title bits */
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+.section-head h2 {
+  font-size: clamp(26px, 4vw, 40px);
+  margin: 14px 0 12px;
+}
+.section-head p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* progress dots */
+.dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+.dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint-200);
+  transition: all 0.25s;
+}
+.dots span.on {
+  width: 26px;
+  border-radius: 6px;
+  background: var(--mint-500);
+}
+
+@media (max-width: 620px) {
+  .hdr-links .hide-sm {
+    display: none;
+  }
+}
+
+/* 헤더 우측 — 텍스트 링크(내 로고·로그아웃) + CTA 를 한 그룹으로 */
+.hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: none;
+}
+.hdr-link {
+  background: none;
+  border: none;
+  padding: 6px 0;
+  font-family: var(--font-head);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #666;
+  cursor: pointer;
+}
+.hdr-link:hover { color: #111; }
+
+/* 언어 토글 */
+.hdr-lang { display: inline-flex; align-items: center; gap: 3px; background: none; border: none; padding: 6px 0; font-family: var(--font-head); font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; color: #b5b5b5; cursor: pointer; }
+.hdr-lang span.on { color: #111; }
+.hdr-lang i { font-style: normal; color: #ddd; }
